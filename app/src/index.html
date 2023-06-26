@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title> CipherLock </title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./js/togglePassword.js"></script>
+    <script type="module" src="./js/browseFile.js"></script>
+    <script type="module" src="./js/clearSelectedFiles.js"></script>
+    <script type="module" src="./js/fileEncryptDecrypt.js"></script>
+    <script type="module" src="./js/reset.js"></script>
+  </head>
+  <body class=" min-width-200 h-full w-full text-center select-none bg-[#ddf8f8] text-white text-[1.1rem]">
+
+    <div class="grid grid-cols-2 gap-2 p-2 space-x-3 space-y-3">
+      <div >
+        <span class=" text-black font-bold font-sans"> Please choose to process a file or folder: </span>
+
+        <div
+          id="browse-container"
+          class=" max-h-20 p-3 flex justify-stretch gap-4">
+          <label
+            class="rounded-lg grid grid-cols-2 justify-items-stretch font-semibold w-full bg-gray-200 text-black p-[5.5px] hover:bg-neutral-300 hover:cursor-pointer active:scale-[0.99] transition-all duration-[0.05s]">
+            <p class="font-semibold">FILE</p>  
+            <img src="../../assets/file.svg" alt="file" class="max-h-10"/>
+            <input 
+              id="file-picker"
+              type="file"
+              multiple="multiple"
+              class="hidden" />
+          </label>
+          <label
+            class="rounded-lg grid grid-cols-2 justify-items-stretch font-semibold w-full bg-gray-200 text-black p-[5.5px] hover:bg-neutral-300 hover:cursor-pointer active:scale-[0.99] transition-all duration-[0.05s]">
+            <p class="font-semibold">FOLDER</p> 
+            <img src="../../assets/folder.svg" alt="folder" class="max-h-10" />
+            <input
+              id="folder-picker"
+              type="file"
+              webkitdirectory mozdirectory msdirectory odirectory directory multiple
+              class="hidden"/>
+          </label>
+        </div>
+
+        <div
+          id="files-container"
+          class="bg-slate-900 w-auto min-h-[300px] overflow-auto whitespace-nowrap scrollbar scroll-smooth">
+          <div class="grid grid-cols-2 p-1 justify-items-end bg-neutral-700 h-[38px]">
+            <span
+              id="files-container-title"
+              class="sticky top-0 left-0 flex justify-normal items-center font-semibold text-lg">
+              Selected Files:
+            </span>
+            <button
+              disabled
+              id="clear-btn"
+              class="object-contain h-[30px] w-[30px] p-1 bg-white opacity-100 text-black font-semibold text-lg hover:bg-blue-300 hover:cursor-pointer">
+              <img src="../../assets/clearall.svg" alt="file" class="max-h-10 max-w-10 object-scale-down "/>
+            </button>
+          </div>
+          
+          <ul
+            id="selected-files">
+          </ul>
+        </div>
+    
+      </div>
+
+      <div class="min-h-max">
+
+        <div class="pl-3 text-left text-black">Password</div>
+
+        <div
+          id="password-container"
+          class="border-b-stone-950 p-3 py-[10px] flex justify-around items-center content-center">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Enter Password"
+            class=" text-black bg-transparent w-full rounded-sm rounded-tr-none rounded-br-none h-8 px-2 focus:outline-none focus:border-black focus:border-b-2"
+          />
+          <label
+            id="toggle-password"
+            for="password-input"
+            class="bg-opacity-100 w-16 rounded-sm rounded-bl-none h-8 rounded-tl-none p-1 px-2 hover:cursor-pointer">
+            <img src="../../assets/hide.svg" alt="eye-icon" class="h-6 w-9 object-contain object-center"/>
+          </label>
+        </div>
+
+        <p
+          id="message-box"
+          class="mx-2 my-[10px] font-semibold h-[33px] px-4 flex items-center justify-center rounded-full text-black bg-neutral-100 opacity-0">
+        </p>
+
+        <div class="px-2">
+          <div
+            id="progress-bar-container"
+            class="bg-neutral-100 w-full h-3 flex items-center rounded overflow-hidden opacity-10">
+              <div
+                id="progress-bar"
+                class="h-full rounded w-full">
+              </div>
+          </div>
+        </div>
+
+        <div class="px-2">
+          <button
+            disabled
+            id="reset-btn"
+            class="bg-blue-200 text-black text-lg h-[34px] font-medium tracking-wide w-full rounded mt-3 hover:bg-blue-300 active:scale-x-[0.99] transition-all duration-[0.05s] opacity-10">
+            Reset
+          </button>
+        </div>
+
+        <div
+          id="encrypt-decrypt-btn-container"
+          class="max-h-72 p-2 flex items-center justify-center h-screen gap-4 ">
+          <button
+            id="encrypt-btn"
+            class="rounded-lg overflow-hidden p-5 w-full h-screen max-h-32 bg-[#fff0f0] text-black justify-center items-center hover:bg-red-200 active:scale-[0.98] transition-all duration-[0.05s]">
+            <span >ENCRYPT</span>
+            <div class="flex justify-center items-center ">
+              <img
+              src="../../assets/encrypt.svg"
+              alt="locked padlock"
+              class="object-contain h-12 w-12">
+            </div>
+          </button>
+          <button
+            id="decrypt-btn"
+            class="rounded-lg overflow-hidden p-5 w-full h-screen max-h-32 bg-[#f1fff0] text-black justify-center items-center hover:bg-green-200 active:scale-[0.98] transition-all duration-[0.05s]">
+            <span>DECRYPT</span>
+            <div class="flex justify-center items-center ">
+              <img
+                src="../../assets/decrypt.svg"
+                alt="unlocked padlock"
+                class="object-contain h-12 w-12 ">
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+        
+
+  </body>
+</html>
