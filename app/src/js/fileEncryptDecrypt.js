@@ -1,6 +1,7 @@
 import { filesList } from "./browseFile.js";
 import { noPasswordInput } from "./errors/noPasswordInput.js";
 import { noFilesSelected } from "./errors/noFilesSelected.js";
+import { passReqNotMet } from "./errors/PassReqNotMet.js";
 import { wrongPassword } from "./errors/wrongPassword.js";
 import { disableUI } from "./disableUI.js";
 import { encryptionProgress } from "./progressBar/encryptionProgress.js";
@@ -21,10 +22,15 @@ decryptBtn.addEventListener("click", () => {
 
 function clickHandler(operation, doneFunc, progressFunc) {
   const password = passwordInput.value;
+
+  var passReq =  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+
   if (filesList.length === 0) {
     noFilesSelected();
   } else if (password.length === 0) {
     noPasswordInput();
+  } else if (!password.match(passReq)) {
+    passReqNotMet();
   } else {
     disableUI();
     progressFunc();
