@@ -28,7 +28,7 @@
   },
   "keywords": [],
   "author": "Muiz",
-  "license": "MIT",
+  "license": "None",
   "dependencies": {
     "electron-store": "^8.1.0"
   },
