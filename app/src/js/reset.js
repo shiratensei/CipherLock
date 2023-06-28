@@ -49,12 +49,14 @@ function reset() {
   messageBox.classList.add("opacity-10");
   messageBox.classList.remove("shake-up-down");
   messageBox.classList.remove("wrong-password-shake");
-  messageBox.classList.add("bg-neutral-100");
+  messageBox.classList.add("bg-primary");
   messageBox.classList.remove("bg-red-200");
   messageBox.classList.remove("text-[red]");
   //
   resetBtn.disabled = true;
   resetBtn.classList.add("opacity-10");
+  resetBtn.classList.remove("visible")
+  resetBtn.classList.add("invisble")
   //
   filesList.length = 0;
   selectedFiles.innerHTML = "";

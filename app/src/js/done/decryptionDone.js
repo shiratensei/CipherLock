@@ -21,6 +21,13 @@ export function decryptionDone() {
   //
   resetBtn.disabled = false;
   resetBtn.classList.remove("opacity-10");
+  resetBtn.classList.remove("invisible")
+  resetBtn.classList.add("visible")
+
+  const messageBoxTimeout = setTimeout(() => {
+    resetBtn.click();
+  }, 4000)
+  
   //
   if (filesList.length > 1) {
     window.sendNotification(

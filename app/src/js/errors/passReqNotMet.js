@@ -16,8 +16,19 @@ export function passReqNotMet() {
     //
     resetBtn.disabled = false;
     resetBtn.classList.remove("opacity-10");
+    resetBtn.classList.remove("invisible")
+    resetBtn.classList.add("visible")
 
     const messageBoxTimeout = setTimeout(() => {
-        resetBtn.click();
-    }, 4000)
+        resetBtn.classList.remove("visible")
+        resetBtn.classList.add("invisible")
+        messageBox.innerHTML = "";
+        messageBox.classList.add("mx-2");
+        messageBox.classList.remove("m-auto");
+        messageBox.classList.add("shake-up-down");
+        messageBox.classList.remove("wrong-password-shake");
+        messageBox.classList.add("bg-neutral-100");
+        messageBox.classList.remove("bg-red-200");
+        messageBox.classList.remove("text-[red]");
+    }, 5000)
 }
