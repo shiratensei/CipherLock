@@ -1,4 +1,4 @@
-# File Encryptor 🔐
+# CipherLock
 An app that Encrypts / Decrypts your files with a password. Built using [**Electron**](https://www.electronjs.org) and [**TailwindCSS**](https://tailwindcss.com)<br>
 Download the app from [here](https://github.com/abhishake21/File-encryptor/releases/download/v1.0.1/File.Encryptor.Setup.1.0.1.exe) or from the Releases tab for the latest version and install like any other program.
 
