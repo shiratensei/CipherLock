@@ -1,17 +1,20 @@
 {
-  "name": "file-encryptor",
-  "productName": "File Encryptor",
+  "name": "cipher-lock",
+  "productName": "CipherLock",
   "version": "1.3.0",
   "description": "An app to encrypt/decrypt files with a password.",
   "main": "./app/electron/main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron-forge start",
     "build-css": "tailwindcss -i ./app/tailwind.css -o ./app/src/styles.css",
     "watch-css": "tailwindcss -i ./app/tailwind.css -o ./app/src/styles.css --watch",
-    "build-installer": "electron-builder"
+    "build-installer": "electron-builder",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "dist": "build"
   },
   "build": {
-    "appId": "com.fileEncryptor.app",
+    "appId": "com.CipherLock.app",
     "win": {
       "target": [
         "nsis"
@@ -30,11 +33,18 @@
   "author": "Muiz",
   "license": "None",
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.2.1",
+    "@electron-forge/maker-deb": "^6.2.1",
+    "@electron-forge/maker-rpm": "^6.2.1",
+    "@electron-forge/maker-squirrel": "^6.2.1",
+    "@electron-forge/maker-zip": "^6.2.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
     "electron": "^21.4.4",
-    "electron-builder": "^23.6.0",
+    "electron-builder": "^24.4.0",
     "tailwindcss": "^3.3.2"
   }
 }
